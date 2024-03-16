@@ -16,7 +16,7 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
-  build:
+  ignite:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
@@ -33,10 +33,13 @@ jobs:
           podman run --interactive --rm --security-opt label=disable \
           --volume ${PWD}:/pwd --workdir /pwd quay.io/coreos/butane:release \
           --pretty --strict oblong.bu > oblong.ign
+          podman run --interactive --rm --security-opt label=disable \
+          --volume ${PWD}:/pwd --workdir /pwd quay.io/coreos/butane:release \
+          --pretty --strict remote.bu > remote.ign
       - name: Commit to git
         run: |
           git config --global user.name 'The Oval'
           git config --global user.email 'team@obl.ong'
-          git add oblong.ign
+          git add oblong.ign remote.ign
           git commit -m "CI: compiled ignition"
           git push
