@@ -25,7 +25,7 @@
   "systemd": {
     "units": [
       {
-        "contents": "[Unit]\nDescription=Run QEMU Guest Agent\nAfter=default.target\n\n[Service]\nExecStartPre=/usr/bin/docker rm --force qemu-ga\nExecStart=/usr/bin/docker docker run --rm -d --name qemu-ga \\\n  -v /dev:/dev \\\n  -v /etc/os-release:/etc/os-release:ro \\\n  -v /var/run/dbus/system_bus_socket:/var/run/dbus/system_bus_socket \\\n  -v /sys/fs/cgroup:/sys/fs/cgroup \\\n  -v /sbin/shutdown:/sbin/shutdown \\\n  -v /bin/systemctl:/bin/systemctl \\\n  -v /usr/lib/systemd:/usr/lib/systemd \\\n  -v /lib64:/lib64 \\\n  --privileged \\\n  --uts=host \\\n  --net=host \\\n  docker.io/danskadra/qemu-ga -v\nExecStop=/usr/bin/docker stop qemu-ga\n\n[Install]\nWantedBy=multi-user.target\n",
+        "contents": "[Unit]\nDescription=Run QEMU Guest Agent\nAfter=default.target\n\n[Service]\nExecStartPre=/usr/bin/docker rm --force qemu-ga\nExecStart=/usr/bin/docker run --rm -d --name qemu-ga -v /dev:/dev -v /etc/os-release:/etc/os-release:ro -v /var/run/dbus/system_bus_socket:/var/run/dbus/system_bus_socket -v /sys/fs/cgroup:/sys/fs/cgroup -v /sbin/shutdown:/sbin/shutdown -v /bin/systemctl:/bin/systemctl -v /usr/lib/systemd:/usr/lib/systemd -v /lib64:/lib64 --privileged --uts=host --net=host docker.io/danskadra/qemu-ga -v\nExecStop=/usr/bin/docker stop qemu-ga\n\n[Install]\nWantedBy=multi-user.target\n",
         "enabled": true,
         "name": "qemu-guest-agent.service"
       }
