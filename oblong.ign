@@ -6,7 +6,8 @@
     "users": [
       {
         "groups": [
-          "wheel"
+          "wheel",
+          "sudo"
         ],
         "name": "reesericci",
         "passwordHash": "$y$j9T$PXcOUHzBWH43oFsHsyasD/$nmp3XmDQiAq3xlIN.rX49zA/UtDzmlJzlGSVsie6U4/",
