@@ -17,17 +17,24 @@
       }
     ]
   },
+  "storage": {
+    "files": [
+      {
+        "path": "/bin/reprovision",
+        "contents": {
+          "compression": "gzip",
+          "source": "data:;base64,H4sIAAAAAAAC/3yR3YrcMAyF7/MU6jYw3QUlvShLKaQv0QcYHFvJmJWlYCvzQ+m7l1nPDmkX9tLyd44OR58/9WOUfnTl0BQyQFrPgApLXGhykZsoxRzzPtBx2B2D290ncZZoUWXYHcyW8qPvszt1c7TDOq6FslcxEuu8pl5HRpW5jzJl1ycX5TpSmbs4y64pa1DIS0ItlongtgLwAi90Jo+mygW8ZtKCt1/K73RuWfiCHI8EiI5ZT5hpYecpkVhp/jeAoCdhdQFwguVMzQtlIR7aL1xgoqDZ4U3z9GqLFcDz9+f987fHJkq07NJUPpDcme6pi2l+bLKqfaiowBvunUF7N4G2/sJP8JrGKBSuWK3itSxAhrbmBKzbw9D1WxoA0WtKTgJyFBoeaoDu2ky3PXn7e/P6A/9gt/vv18wb7m18haUo02B2+fX1oSYsl2KUvHHN2vwNAAD//2TIyFGAAgAA"
+        },
+        "mode": 505
+      }
+    ]
+  },
   "systemd": {
     "units": [
       {
         "contents": "[Unit]\nDescription=Run QEMU Guest Agent\nAfter=default.target\n\n[Service]\nExecStartPre=/usr/bin/docker rm --force qemu-ga\nExecStart=/usr/bin/docker run --name qemu-ga -v /dev:/dev -v /etc/os-release:/etc/os-release:ro -v /var/run/dbus/system_bus_socket:/var/run/dbus/system_bus_socket -v /sys/fs/cgroup:/sys/fs/cgroup -v /sbin/shutdown:/sbin/shutdown -v /bin/systemctl:/bin/systemctl -v /usr/lib/systemd:/usr/lib/systemd -v /lib64:/lib64 --privileged --uts=host --net=host docker.io/danskadra/qemu-ga -v\nExecStop=/usr/bin/docker stop qemu-ga\n\n[Install]\nWantedBy=multi-user.target\n",
         "enabled": true,
         "name": "qemu-guest-agent.service"
-      },
-      {
-        "contents": "[Unit]\nDescription=Ensure ignition re-runs\nAfter=default.target\n\n[Service]\nType=oneshot\nExecStart=/bin/unshare -m /bin/sh -c 'mount -o remount,rw /boot \u0026\u0026 touch /boot/ignition.firstboot'\n\n[Install]\nWantedBy=multi-user.target\n",
-        "enabled": true,
-        "name": "ignition-reruns.service"
       }
     ]
   }
