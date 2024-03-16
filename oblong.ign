@@ -1,0 +1,34 @@
+{
+  "ignition": {
+    "version": "3.4.0"
+  },
+  "kernelArguments": {
+    "shouldExist": [
+      "coreos.first_boot=1"
+    ]
+  },
+  "passwd": {
+    "users": [
+      {
+        "groups": [
+          "wheel",
+          "sudo"
+        ],
+        "name": "reesericci",
+        "passwordHash": "$y$j9T$PXcOUHzBWH43oFsHsyasD/$nmp3XmDQiAq3xlIN.rX49zA/UtDzmlJzlGSVsie6U4/",
+        "sshAuthorizedKeys": [
+          "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDtJXJ1jH0J8/JseqadIYP2TkzqMQHTJWm7D7ycYnZP8IbYspyoCKheIkGkkW7pMSnK29KwvVWg4VN0vn+kGLbOu8fgoudGNkHgW8rt+/T7DdmjXWEoCOp4Sv8HIjANt/mbGLr8a7mF/fb/EvvOGuJHt0qb9dlrO227tXwLrs1isOqZiA55gFI56ua3gg0SIW7enJiNGx5AE8toeL9MZIA2cuSiCWoe1V8yidCk5bcXNZQdJtjtlHzXU9TfRGE3lwALsLZG7gbU6ww3t0YC9WcV9JsCCsj1vlMU3B5N6ElRVKkFNJS1BgGtN80VkWIgBQlEru6Vdjs7UaPHrO2lnvRpxC4hxMk5PmMP5iIqsiwwQabN93tqIuuiTG6VF7GTFcDxfwUv6s8JiDQEtif/Li5aKfoH0DoJRm2+drijFbZBFgU55DENLRvKynOG5lkmjcQ34D5ZHDpaZgMciK7IatojtIWzQRQ0RtTWwrY/RmN84Kx43s2bnko16+Bz4lpH2aU= reesericci@poptop"
+        ]
+      }
+    ]
+  },
+  "systemd": {
+    "units": [
+      {
+        "contents": "[Unit]\nDescription=Run QEMU Guest Agent\nAfter=default.target\n\n[Service]\nExecStartPre=/usr/bin/docker rm --force qemu-ga\nExecStart=/usr/bin/docker run --name qemu-ga -v /dev:/dev -v /etc/os-release:/etc/os-release:ro -v /var/run/dbus/system_bus_socket:/var/run/dbus/system_bus_socket -v /sys/fs/cgroup:/sys/fs/cgroup -v /sbin/shutdown:/sbin/shutdown -v /bin/systemctl:/bin/systemctl -v /usr/lib/systemd:/usr/lib/systemd -v /lib64:/lib64 --privileged --uts=host --net=host docker.io/danskadra/qemu-ga -v\nExecStop=/usr/bin/docker stop qemu-ga\n\n[Install]\nWantedBy=multi-user.target\n",
+        "enabled": true,
+        "name": "qemu-guest-agent.service"
+      }
+    ]
+  }
+}
