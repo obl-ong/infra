@@ -1,0 +1,6 @@
+variant: fcos
+version: 1.5.0
+ignition:
+  config:
+    replace:
+      source: https://raw.githubusercontent.com/obl-ong/infra/main/oblong.ign
