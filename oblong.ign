@@ -25,7 +25,7 @@
         "name": "qemu-guest-agent.service"
       },
       {
-        "contents": "[Unit]\nDescription=Ensure ignition re-runs\nAfter=default.target\n\n[Service]\nType=oneshot\nRemainAfterExit=yes\nExecStart=unshare -m /bin/sh -c 'mount -o remount,rw /boot \u0026\u0026 touch /boot/ignition.firstboot'\n\n[Install]\nWantedBy=multi-user.target\n",
+        "contents": "[Unit]\nDescription=Ensure ignition re-runs\nAfter=default.target\n\n[Service]\nType=oneshot\nExecStart=/bin/unshare -m /bin/sh -c 'mount -o remount,rw /boot \u0026\u0026 touch /boot/ignition.firstboot'\n\n[Install]\nWantedBy=multi-user.target\n",
         "enabled": true,
         "name": "ignition-reruns.service"
       }
