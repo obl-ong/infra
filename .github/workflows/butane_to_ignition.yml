@@ -38,7 +38,7 @@ jobs:
           --pretty --strict remote.bu > remote.ign
       - name: Validate config
         run: |
-          wget -O ignition-validate https://github.com/coreos/ignition/releases/download/v2.18.0/ignition-validate-aarch64-linux
+          wget -O ignition-validate https://github.com/coreos/ignition/releases/download/v2.18.0/ignition-validate-x86_64-linux
           chmod +x ignition-validate
           ./ignition-validate oblong.ign
           ./ignition-validate remote.ign
