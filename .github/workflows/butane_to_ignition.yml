@@ -36,12 +36,14 @@ jobs:
           podman run --interactive --rm --security-opt label=disable \
           --volume ${PWD}:/pwd --workdir /pwd quay.io/coreos/butane:release \
           --pretty --strict remote.bu > remote.ign
-      - name: Validate config
+      - name: Setup ignition validate
         run: |
           wget -O ignition-validate https://github.com/coreos/ignition/releases/download/v2.18.0/ignition-validate-x86_64-linux
           chmod +x ignition-validate
-          ./ignition-validate oblong.ign
-          ./ignition-validate remote.ign
+      - name: Validate oblong.ign
+        run: ./ignition-validate oblong.ign
+      - name: Validate remote.ign
+        run: ./ignition-validate remote.ign
       - name: Commit to git
         run: |
           git config --global user.name 'The Oval'
