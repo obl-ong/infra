@@ -2,11 +2,6 @@
   "ignition": {
     "version": "3.4.0"
   },
-  "kernelArguments": {
-    "shouldExist": [
-      "coreos.first_boot=1"
-    ]
-  },
   "passwd": {
     "users": [
       {
@@ -28,6 +23,11 @@
         "contents": "[Unit]\nDescription=Run QEMU Guest Agent\nAfter=default.target\n\n[Service]\nExecStartPre=/usr/bin/docker rm --force qemu-ga\nExecStart=/usr/bin/docker run --name qemu-ga -v /dev:/dev -v /etc/os-release:/etc/os-release:ro -v /var/run/dbus/system_bus_socket:/var/run/dbus/system_bus_socket -v /sys/fs/cgroup:/sys/fs/cgroup -v /sbin/shutdown:/sbin/shutdown -v /bin/systemctl:/bin/systemctl -v /usr/lib/systemd:/usr/lib/systemd -v /lib64:/lib64 --privileged --uts=host --net=host docker.io/danskadra/qemu-ga -v\nExecStop=/usr/bin/docker stop qemu-ga\n\n[Install]\nWantedBy=multi-user.target\n",
         "enabled": true,
         "name": "qemu-guest-agent.service"
+      },
+      {
+        "contents": "[Unit]\nDescription=Ensure ignition re-runs\nAfter=default.target\n\n[Service]\nType=oneshot\nRemainAfterExit=yes\nExecStart=unshare -m /bin/sh -c 'mount -o remount,rw /boot \u0026\u0026 touch /boot/ignition.firstboot'\n\n[Install]\nWantedBy=multi-user.target\n",
+        "enabled": true,
+        "name": "ignition-reruns.service"
       }
     ]
   }
