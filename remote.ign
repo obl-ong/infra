@@ -1,0 +1,10 @@
+{
+  "ignition": {
+    "config": {
+      "replace": {
+        "source": "https://raw.githubusercontent.com/obl-ong/infra/main/oblong.ign"
+      }
+    },
+    "version": "3.4.0"
+  }
+}
