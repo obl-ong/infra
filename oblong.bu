@@ -11,7 +11,7 @@ systemd:
 
         [Service]
         ExecStartPre=/usr/bin/docker rm --force qemu-ga
-        ExecStart=/usr/bin/docker run --rm -d --name qemu-ga -v /dev:/dev -v /etc/os-release:/etc/os-release:ro -v /var/run/dbus/system_bus_socket:/var/run/dbus/system_bus_socket -v /sys/fs/cgroup:/sys/fs/cgroup -v /sbin/shutdown:/sbin/shutdown -v /bin/systemctl:/bin/systemctl -v /usr/lib/systemd:/usr/lib/systemd -v /lib64:/lib64 --privileged --uts=host --net=host docker.io/danskadra/qemu-ga -v
+        ExecStart=/usr/bin/docker run --name qemu-ga -v /dev:/dev -v /etc/os-release:/etc/os-release:ro -v /var/run/dbus/system_bus_socket:/var/run/dbus/system_bus_socket -v /sys/fs/cgroup:/sys/fs/cgroup -v /sbin/shutdown:/sbin/shutdown -v /bin/systemctl:/bin/systemctl -v /usr/lib/systemd:/usr/lib/systemd -v /lib64:/lib64 --privileged --uts=host --net=host docker.io/danskadra/qemu-ga -v
         ExecStop=/usr/bin/docker stop qemu-ga
 
         [Install]
