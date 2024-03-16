@@ -1,5 +1,27 @@
 variant: fcos
 version: 1.5.0
+systemd:
+  units:
+    - name: qemu-guest-agent.service
+      enabled: true
+      contents: |
+        [Unit]
+        Description=Run qemu guest agent
+        After=default.target
+
+        [Service]
+        ExecStartPre=mkdir -p /var/lib/qemu-guest-agent
+        ExecStartPre=/usr/bin/docker kill qemu-ga
+        ExecStartPre=/usr/bin/docker rm qemu-ga
+        ExecStartPre=/usr/bin/docker pull nkcx/qemu-guest-agent
+        ExecStart=/usr/bin/docker run -d --privileged -v /dev/virtio-ports/org.qemu.guest_agent.0:/dev/virtio-ports/org.qemu.guest_agent.0 nkcx/qemu-guest-agent
+        ExecStart=/usr/bin/docker run --rm --name qemu-ga --privileged -v /dev:/dev -v /bin/systemctl:/bin/systemctl -v /run/systemd/system:/run/systemd/system -v /var/run/dbus/system_bus_socket:/var/run/dbus/system_bus_socket -v /sys/fs/cgroup:/sys/fs/cgroup --ipc=host --net=host qemu-guest-agent:dev1
+        ExecStart=/usr/bin/docker run --rm --name qemu-ga --privileged -v /dev:/dev -v /run/dbus:/run/dbus --ipc=host --net=host qemu-guest-agent:dev1
+        ExecStart=/usr/bin/docker run --rm --name qemu-ga --privileged -v /dev:/dev -v /run/dbus:/run/dbus -v /run/systemd:/run/systemd --pid=host --ipc=host --net=host qemu-guest-agent:debslim1
+        ExecStop=/usr/bin/docker stop qemu-ga
+
+        [Install]
+        WantedBy=multi-user.target
 passwd:
   users:
     - name: reesericci
