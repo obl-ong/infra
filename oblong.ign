@@ -2,6 +2,11 @@
   "ignition": {
     "version": "3.4.0"
   },
+  "kernelArguments": {
+    "shouldExist": [
+      "coreos.first_boot=1"
+    ]
+  },
   "passwd": {
     "users": [
       {
