@@ -20,7 +20,7 @@
   "storage": {
     "files": [
       {
-        "path": "/bin/reprovision",
+        "path": "/var/reprovision",
         "contents": {
           "compression": "gzip",
           "source": "data:;base64,H4sIAAAAAAAC/3yR3YrcMAyF7/MU6jYw3QUlvShLKaQv0QcYHFvJmJWlYCvzQ+m7l1nPDmkX9tLyd44OR58/9WOUfnTl0BQyQFrPgApLXGhykZsoxRzzPtBx2B2D290ncZZoUWXYHcyW8qPvszt1c7TDOq6FslcxEuu8pl5HRpW5jzJl1ycX5TpSmbs4y64pa1DIS0ItlongtgLwAi90Jo+mygW8ZtKCt1/K73RuWfiCHI8EiI5ZT5hpYecpkVhp/jeAoCdhdQFwguVMzQtlIR7aL1xgoqDZ4U3z9GqLFcDz9+f987fHJkq07NJUPpDcme6pi2l+bLKqfaiowBvunUF7N4G2/sJP8JrGKBSuWK3itSxAhrbmBKzbw9D1WxoA0WtKTgJyFBoeaoDu2ky3PXn7e/P6A/9gt/vv18wb7m18haUo02B2+fX1oSYsl2KUvHHN2vwNAAD//2TIyFGAAgAA"
