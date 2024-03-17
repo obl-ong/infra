@@ -20,12 +20,18 @@
   "storage": {
     "files": [
       {
-        "path": "/var/reprovision",
+        "group": {
+          "name": "reesericci"
+        },
+        "path": "/var/home/reesericci/.local/bin",
+        "user": {
+          "name": "reesericci"
+        },
         "contents": {
           "compression": "gzip",
-          "source": "data:;base64,H4sIAAAAAAAC/3yR3YrcMAyF7/MU6jYw3QUlvShLKaQv0QcYHFvJmJWlYCvzQ+m7l1nPDmkX9tLyd44OR58/9WOUfnTl0BQyQFrPgApLXGhykZsoxRzzPtBx2B2D290ncZZoUWXYHcyW8qPvszt1c7TDOq6FslcxEuu8pl5HRpW5jzJl1ycX5TpSmbs4y64pa1DIS0ItlongtgLwAi90Jo+mygW8ZtKCt1/K73RuWfiCHI8EiI5ZT5hpYecpkVhp/jeAoCdhdQFwguVMzQtlIR7aL1xgoqDZ4U3z9GqLFcDz9+f987fHJkq07NJUPpDcme6pi2l+bLKqfaiowBvunUF7N4G2/sJP8JrGKBSuWK3itSxAhrbmBKzbw9D1WxoA0WtKTgJyFBoeaoDu2ky3PXn7e/P6A/9gt/vv18wb7m18haUo02B2+fX1oSYsl2KUvHHN2vwNAAD//2TIyFGAAgAA"
+          "source": "data:;base64,H4sIAAAAAAAC/3zRUWocMQwG4HefQk0HtgnY7kMJpTC9RA+weGzNrIgtLbYmmVB697J4s0xe9tHyJ/nH+vrFT8R+Cu1kGipYXDewAmc64xwoG+KmIedjwtfx0FI43Cq0MCkJj4eT6rn98r6GN7eQntZpbVijsCKri1K8TNkKL554rsGXQOwrFlF0tPDBRKkozV4nY4Ukb5wlJLAznDc0L1gZ8zh8yw1mTFKDvfY82UyvaDuw28/n4/OPR0NMWkOZ252Wm3FPjsryaKqI3u3o4IPHoDDchsDQb+E3RCkTMaYLM21NAi+4YQSbYeg5wfbX0+j8XgNYG6WUwMlmYhwfegB3+Rm3X8Xwd3f6B5/YdS/Htead+yhfMDfJOKq+//n+0BO296ZYouae1fwPAAD//6ZdmkUYAgAA"
         },
-        "mode": 505
+        "mode": 504
       }
     ]
   },
