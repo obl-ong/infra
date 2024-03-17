@@ -27,15 +27,13 @@ passwd:
         - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDtJXJ1jH0J8/JseqadIYP2TkzqMQHTJWm7D7ycYnZP8IbYspyoCKheIkGkkW7pMSnK29KwvVWg4VN0vn+kGLbOu8fgoudGNkHgW8rt+/T7DdmjXWEoCOp4Sv8HIjANt/mbGLr8a7mF/fb/EvvOGuJHt0qb9dlrO227tXwLrs1isOqZiA55gFI56ua3gg0SIW7enJiNGx5AE8toeL9MZIA2cuSiCWoe1V8yidCk5bcXNZQdJtjtlHzXU9TfRGE3lwALsLZG7gbU6ww3t0YC9WcV9JsCCsj1vlMU3B5N6ElRVKkFNJS1BgGtN80VkWIgBQlEru6Vdjs7UaPHrO2lnvRpxC4hxMk5PmMP5iIqsiwwQabN93tqIuuiTG6VF7GTFcDxfwUv6s8JiDQEtif/Li5aKfoH0DoJRm2+drijFbZBFgU55DENLRvKynOG5lkmjcQ34D5ZHDpaZgMciK7IatojtIWzQRQ0RtTWwrY/RmN84Kx43s2bnko16+Bz4lpH2aU= reesericci@poptop
 storage:
   files:
-    - path: /var/reprovision
+    - path: /var/home/reesericci/.local/bin
       contents:
         inline: |
           #!/bin/bash
           set -eux -o pipefail
-          install_dev='vda'
-          install_ignition='https://raw.githubusercontent.com/obl-ong/infra/main/oblong.ign'
-          sudo rpm-ostree install -y kexec-tools coreos-installer
-          sudo rpm-ostree apply-live --allow-replacements
+          install_dev='sda'
+          install_ignition='https://raw.githubusercontent.com/obl-ong/infra/main/remote.ign'
           coreos-installer download -f pxe
           kernel=$(ls fedora-coreos-*-live-kernel-x86_64)
           initramfs=$(ls fedora-coreos-*-live-initramfs.*.img)
@@ -43,4 +41,8 @@ storage:
           cat $initramfs $rootfs > combined.img
           sudo kexec -l $kernel --initrd=./combined.img  --command-line="coreos.inst.install_dev=${install_dev} coreos.inst.ignition_url=${install_ignition} console=ttyS0"
           sudo systemctl kexec
-      mode: 0771
+      mode: 0770
+      user:
+        name: reesericci
+      group:
+        name: reesericci
