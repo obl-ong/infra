@@ -68,11 +68,6 @@ storage:
   disks:
     - device: /dev/disk/by-id/coreos-boot-disk
       wipe_table: false
-      partitions:
-      - number: 0
-        label: root
-        size_mib: 0
-        resize: true
     - device: /dev/sdb
       wipe_table: true
       partitions:
