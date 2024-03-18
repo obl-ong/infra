@@ -24,12 +24,11 @@
         "partitions": [
           {
             "label": "root",
-            "number": 4,
             "resize": true,
             "sizeMiB": 0
           }
         ],
-        "wipeTable": false
+        "wipeTable": true
       },
       {
         "device": "/dev/sdb",
@@ -39,7 +38,7 @@
             "sizeMiB": 0
           }
         ],
-        "wipeTable": false
+        "wipeTable": true
       }
     ],
     "files": [
