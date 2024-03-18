@@ -66,13 +66,6 @@ storage:
       contents:
         source: https://raw.githubusercontent.com/obl-ong/infra/main/mobilizon.yml
   disks:
-    - device: /dev/disk/by-id/coreos-boot-disk
-      wipe_table: true
-      partitions:
-      - number: 4
-        label: root
-        size_mib: 0
-        resize: true
     - device: /dev/sdb
       wipe_table: false
       partitions:
