@@ -65,6 +65,11 @@ storage:
       overwrite: true
       contents:
         source: https://raw.githubusercontent.com/obl-ong/infra/main/mobilizon.yml
+    - path: /usr/local/bin/docker-compose
+      overwrite: true
+      mode: 0777
+      contents:
+        source: https://github.com/docker/compose/releases/download/v2.14.1/docker-compose-linux-x86_64
   disks:
     - device: /dev/disk/by-id/coreos-boot-disk
       wipe_table: false
