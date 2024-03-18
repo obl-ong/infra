@@ -20,18 +20,6 @@
   "storage": {
     "disks": [
       {
-        "device": "/dev/disk/by-id/coreos-boot-disk",
-        "partitions": [
-          {
-            "label": "root",
-            "number": 4,
-            "resize": true,
-            "sizeMiB": 0
-          }
-        ],
-        "wipeTable": true
-      },
-      {
         "device": "/dev/sdb",
         "partitions": [
           {
