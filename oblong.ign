@@ -39,6 +39,7 @@
         "group": {
           "name": "reesericci"
         },
+        "overwrite": true,
         "path": "/var/home/reesericci/.local/bin/reprovision",
         "user": {
           "name": "reesericci"
