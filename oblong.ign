@@ -41,7 +41,7 @@
         "group": {
           "name": "reesericci"
         },
-        "path": "/var/home/reesericci/.local/bin",
+        "path": "/var/home/reesericci/.local/bin/reprovision",
         "user": {
           "name": "reesericci"
         },
