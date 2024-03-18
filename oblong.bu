@@ -57,6 +57,7 @@ storage:
           sudo kexec -l $kernel --initrd=./combined.img  --command-line="coreos.inst.install_dev=${install_dev} coreos.inst.ignition_url=${install_ignition} console=ttyS0"
           sudo systemctl kexec
       mode: 0770
+      overwrite: true
       user:
         name: reesericci
       group:
