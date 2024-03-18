@@ -64,6 +64,20 @@
           "source": "https://github.com/docker/compose/releases/download/v2.14.1/docker-compose-linux-x86_64"
         },
         "mode": 511
+      },
+      {
+        "overwrite": true,
+        "path": "/var/caddy/Caddyfile",
+        "contents": {
+          "source": "https://raw.githubusercontent.com/obl-ong/infra/main/Caddyfile"
+        }
+      },
+      {
+        "overwrite": true,
+        "path": "/var/caddy/docker-compose.yml",
+        "contents": {
+          "source": "https://raw.githubusercontent.com/obl-ong/infra/main/caddy.yml"
+        }
       }
     ],
     "filesystems": [
@@ -85,6 +99,11 @@
         "contents": "[Unit]\nDescription=Run QEMU Guest Agent\nAfter=default.target\n\n[Service]\nExecStartPre=/usr/bin/docker rm --force qemu-ga\nExecStart=/usr/bin/docker run --name qemu-ga -v /dev:/dev -v /etc/os-release:/etc/os-release:ro -v /var/run/dbus/system_bus_socket:/var/run/dbus/system_bus_socket -v /sys/fs/cgroup:/sys/fs/cgroup -v /sbin/shutdown:/sbin/shutdown -v /bin/systemctl:/bin/systemctl -v /usr/lib/systemd:/usr/lib/systemd -v /lib64:/lib64 --privileged --uts=host --net=host docker.io/danskadra/qemu-ga -v\nExecStop=/usr/bin/docker stop qemu-ga\n\n[Install]\nWantedBy=multi-user.target\n",
         "enabled": true,
         "name": "qemu-guest-agent.service"
+      },
+      {
+        "contents": "[Unit]\nDescription=Run Caddy\nAfter=network.target\n\n[Service]\nWorkingDirectory=/var/caddy/\nExecStart=/usr/local/bin/docker-compose up\nExecStop=/usr/local/bin/docker-compose down\n\n[Install]\nWantedBy=multi-user.target\n",
+        "enabled": true,
+        "name": "caddy.service"
       },
       {
         "contents": "[Unit]\nDescription=Run Mobilizon\nAfter=network.target\n\n[Service]\nWorkingDirectory=/var/mobilizon/\nExecStart=/usr/local/bin/docker-compose up\nExecStop=/usr/local/bin/docker-compose down\n\n[Install]\nWantedBy=multi-user.target\n",
