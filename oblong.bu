@@ -66,6 +66,13 @@ storage:
       contents:
         source: https://raw.githubusercontent.com/obl-ong/infra/main/mobilizon.yml
   disks:
+    - device: /dev/disk/by-id/coreos-boot-disk
+      wipe_table: false
+      partitions:
+      - number: 4
+        label: root
+        size_mib: 0
+        resize: true
     - device: /dev/sdb
       wipe_table: false
       partitions:
@@ -75,8 +82,5 @@ storage:
   filesystems:
     - path: /var
       device: /dev/disk/by-partlabel/var
-      # We can select the filesystem we'd like.
       format: ext4
-      # Ask Butane to generate a mount unit for us so that this filesystem
-      # gets mounted in the real root.
       with_mount_unit: true
