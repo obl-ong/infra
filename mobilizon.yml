@@ -1,0 +1,53 @@
+version: "3"
+
+services:
+  mobilizon:
+    image: docker.io/framasoft/mobilizon
+    environment:
+      - MOBILIZON_INSTANCE_NAME
+      - MOBILIZON_INSTANCE_HOST
+      - MOBILIZON_INSTANCE_LISTEN_IP
+      - MOBILIZON_INSTANCE_PORT
+      - MOBILIZON_INSTANCE_EMAIL
+      - MOBILIZON_REPLY_EMAIL
+      - MOBILIZON_INSTANCE_REGISTRATIONS_OPEN
+      - MOBILIZON_DATABASE_USERNAME=${POSTGRES_USER}
+      - MOBILIZON_DATABASE_PASSWORD=${POSTGRES_PASSWORD}
+      - MOBILIZON_DATABASE_DBNAME=${POSTGRES_DB}
+      - MOBILIZON_DATABASE_HOST=db
+      - MOBILIZON_DATABASE_PORT
+      - MOBILIZON_DATABASE_SSL
+      - MOBILIZON_INSTANCE_SECRET_KEY_BASE
+      - MOBILIZON_INSTANCE_SECRET_KEY
+      - MOBILIZON_LOGLEVEL
+      - MOBILIZON_SMTP_SERVER
+      - MOBILIZON_SMTP_PORT
+      - MOBILIZON_SMTP_SSL
+      - MOBILIZON_SMTP_TLS
+      - MOBILIZON_SMTP_USERNAME
+      - MOBILIZON_SMTP_PASSWORD
+      - MOBILIZON_UPLOADS
+      - MOBILIZON_UPLOADS_EXPORTS
+      - MOBILIZON_TIMEZONES_DIR
+      - MOBILIZON_TZDATA_DIR
+    volumes:
+      - /var/mobilizon/uploads:/var/lib/mobilizon/uploads
+      # - /var/mobilizon/config.exs:/etc/mobilizon/config.exs:ro
+    ports:
+      - "4000:4000"
+    env_file: /var/mobilizon/.env
+
+  db:
+    image: docker.io/postgis/postgis:15-3.4
+    volumes:
+      - /var/mobilizon/db:/var/lib/postgresql/data:z
+    environment:
+      - POSTGRES_USER
+      - POSTGRES_PASSWORD
+      - POSTGRES_DB
+    env_file: /var/mobilizon/.env
+
+networks:
+  default:
+    ipam:
+      driver: default
