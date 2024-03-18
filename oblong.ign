@@ -87,7 +87,7 @@
         "name": "qemu-guest-agent.service"
       },
       {
-        "contents": "[Unit]\nDescription=Run Mobilizon\nAfter=network.target\n\n[Service]\nWorkingDirectory=/var/mobilizon/\nExecStart=/usr/bin/docker compose up\nExecStop=/usr/bin/docker compose down\n\n[Install]\nWantedBy=multi-user.target\n",
+        "contents": "[Unit]\nDescription=Run Mobilizon\nAfter=network.target\n\n[Service]\nWorkingDirectory=/var/mobilizon/\nExecStart=/usr/local/bin/docker-compose up\nExecStop=/usr/local/bin/docker-compose down\n\n[Install]\nWantedBy=multi-user.target\n",
         "enabled": true,
         "name": "mobilizon.service"
       }
