@@ -25,7 +25,6 @@ systemd:
 
         [Service]
         WorkingDirectory=/var/mobilizon/
-        ExecStartPre=/usr/bin/docker compose rm mobilizon db --force
         ExecStart=/usr/bin/docker compose up
         ExecStop=/usr/bin/docker compose down
 
