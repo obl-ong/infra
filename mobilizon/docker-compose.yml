@@ -32,7 +32,7 @@ services:
       - MOBILIZON_TZDATA_DIR
     volumes:
       - /var/mobilizon/uploads:/var/lib/mobilizon/uploads:Z
-      - /var/mobilizon/config.exs:/etc/mobilizon/config.exs:ro
+      - /var/mobilizon/config.exs:/etc/mobilizon/config.exs:Z
     ports:
       - "4000:4000"
     env_file: /var/mobilizon/.env
