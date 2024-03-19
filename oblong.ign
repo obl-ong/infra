@@ -54,7 +54,14 @@
         "overwrite": true,
         "path": "/var/mobilizon/docker-compose.yml",
         "contents": {
-          "source": "https://raw.githubusercontent.com/obl-ong/infra/main/mobilizon.yml"
+          "source": "https://raw.githubusercontent.com/obl-ong/infra/main/mobilizon/docker-compose.yml"
+        }
+      },
+      {
+        "overwrite": true,
+        "path": "/var/mobilizon/config.exs",
+        "contents": {
+          "source": "https://raw.githubusercontent.com/obl-ong/infra/main/mobilizon/config.exs"
         }
       },
       {
@@ -69,14 +76,14 @@
         "overwrite": true,
         "path": "/var/caddy/Caddyfile",
         "contents": {
-          "source": "https://raw.githubusercontent.com/obl-ong/infra/main/Caddyfile"
+          "source": "https://raw.githubusercontent.com/obl-ong/infra/main/caddy/Caddyfile"
         }
       },
       {
         "overwrite": true,
         "path": "/var/caddy/docker-compose.yml",
         "contents": {
-          "source": "https://raw.githubusercontent.com/obl-ong/infra/main/caddy.yml"
+          "source": "https://raw.githubusercontent.com/obl-ong/infra/main/caddy/docker-compose.yml"
         }
       }
     ],
