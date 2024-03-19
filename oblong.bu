@@ -78,7 +78,11 @@ storage:
     - path: /var/mobilizon/docker-compose.yml
       overwrite: true
       contents:
-        source: https://raw.githubusercontent.com/obl-ong/infra/main/mobilizon.yml
+        source: https://raw.githubusercontent.com/obl-ong/infra/main/mobilizon/docker-compose.yml
+    - path: /var/mobilizon/config.exs
+      overwrite: true
+      contents:
+        source: https://raw.githubusercontent.com/obl-ong/infra/main/mobilizon/config.exs
     - path: /usr/local/bin/docker-compose
       overwrite: true
       mode: 0777
@@ -87,11 +91,11 @@ storage:
     - path: /var/caddy/Caddyfile
       overwrite: true
       contents:
-        source: https://raw.githubusercontent.com/obl-ong/infra/main/Caddyfile
+        source: https://raw.githubusercontent.com/obl-ong/infra/main/caddy/Caddyfile
     - path: /var/caddy/docker-compose.yml
       overwrite: true
       contents:
-        source: https://raw.githubusercontent.com/obl-ong/infra/main/caddy.yml
+        source: https://raw.githubusercontent.com/obl-ong/infra/main/caddy/docker-compose.yml
   disks:
     - device: /dev/disk/by-id/coreos-boot-disk
       wipe_table: false
