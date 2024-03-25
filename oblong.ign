@@ -85,6 +85,13 @@
         "contents": {
           "source": "https://raw.githubusercontent.com/obl-ong/infra/main/caddy/docker-compose.yml"
         }
+      },
+      {
+        "overwrite": true,
+        "path": "/var/chatwoot/docker-compose.yml",
+        "contents": {
+          "source": "https://raw.githubusercontent.com/obl-ong/infra/main/chatwoot/docker-compose.yml"
+        }
       }
     ],
     "filesystems": [
@@ -116,6 +123,11 @@
         "contents": "[Unit]\nDescription=Run Mobilizon\nAfter=network.target\n\n[Service]\nWorkingDirectory=/var/mobilizon/\nExecStart=/usr/local/bin/docker-compose up\nExecStop=/usr/local/bin/docker-compose down\n\n[Install]\nWantedBy=multi-user.target\n",
         "enabled": true,
         "name": "mobilizon.service"
+      },
+      {
+        "contents": "[Unit]\nDescription=Run Chatwoot\nAfter=network.target\n\n[Service]\nWorkingDirectory=/var/chatwoot/\nExecStart=/usr/local/bin/docker-compose up\nExecStop=/usr/local/bin/docker-compose down\n\n[Install]\nWantedBy=multi-user.target\n",
+        "enabled": true,
+        "name": "chatwoot.service"
       }
     ]
   }
