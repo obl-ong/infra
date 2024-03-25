@@ -44,6 +44,20 @@ systemd:
 
         [Install]
         WantedBy=multi-user.target
+    - name: chatwoot.service
+      enabled: true
+      contents: |
+        [Unit]
+        Description=Run Chatwoot
+        After=network.target
+
+        [Service]
+        WorkingDirectory=/var/chatwoot/
+        ExecStart=/usr/local/bin/docker-compose up
+        ExecStop=/usr/local/bin/docker-compose down
+
+        [Install]
+        WantedBy=multi-user.target
 passwd:
   users:
     - name: reesericci
@@ -96,6 +110,10 @@ storage:
       overwrite: true
       contents:
         source: https://raw.githubusercontent.com/obl-ong/infra/main/caddy/docker-compose.yml
+    - path: /var/chatwoot/docker-compose.yml
+      overwrite: true
+      contents:
+        source: https://raw.githubusercontent.com/obl-ong/infra/main/chatwoot/docker-compose.yml
   disks:
     - device: /dev/disk/by-id/coreos-boot-disk
       wipe_table: false
