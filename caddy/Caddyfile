@@ -2,3 +2,8 @@ events.obl.ong {
   tls internal
   reverse_proxy http://localhost:4000
 }
+
+help.obl.ong {
+  tls internal
+  reverse_proxy http://localhost:3000
+}
