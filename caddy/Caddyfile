@@ -7,7 +7,7 @@ help.obl.ong {
 }
 
 https://admin.obl.ong {
-        reverse_proxy 10.10.1.227:3000 {
+        reverse_proxy 10.10.1.221:7000 {
                 health_uri /up
                 health_port 443
         }
@@ -16,7 +16,7 @@ https://admin.obl.ong {
                         respond "{err.status_code} {err.status_text}"
                 }
                 handle {
-                        redir https://status.obl.ong
+                        redir https://status.oblong.dev
                 }
         }
 }
@@ -26,12 +26,8 @@ https://obl.ong {
         redir https://home.obl.ong{uri} permanent
 }
 
-https://forum.oblong.dev https://forum.obl.ong {
-        reverse_proxy 10.10.1.221:10080
-}
-
-https://help.obl.ong {
-        reverse_proxy http://10.10.1.247:3000
+https://forum.obl.ong {
+        reverse_proxy 10.10.1.221
 }
 
 rss.nyctech.obl.ong {
@@ -51,7 +47,7 @@ funkwhale.reeseric.ci {
 }
 
 reese.obl.ong {
-        reverse_proxy http://10.10.1.221:8082
+        reverse_proxy http://10.10.1.221
 }
 
 aux.dinosaurbbq.org {
