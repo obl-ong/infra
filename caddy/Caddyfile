@@ -1,9 +1,65 @@
 events.obl.ong {
-  tls internal
   reverse_proxy http://localhost:4000
 }
 
 help.obl.ong {
-  tls internal
   reverse_proxy http://localhost:3000
+}
+
+https://admin.obl.ong {
+        reverse_proxy 10.10.1.227:3000 {
+                health_uri /up
+                health_port 443
+        }
+        handle_errors {
+                handle_path /up {
+                        respond "{err.status_code} {err.status_text}"
+                }
+                handle {
+                        redir https://status.obl.ong
+                }
+        }
+}
+
+https://obl.ong {
+        header Strict-Transport-Security "max-age=63072000; includeSubDomains; preload"
+        redir https://home.obl.ong{uri} permanent
+}
+
+https://forum.oblong.dev https://forum.obl.ong {
+        reverse_proxy 10.10.1.221:10080
+}
+
+https://help.obl.ong {
+        reverse_proxy http://10.10.1.247:3000
+}
+
+rss.nyctech.obl.ong {
+        reverse_proxy 10.10.1.97:8071
+}
+
+matrix.reeseric.ci {
+        reverse_proxy 10.10.1.89:8008
+}
+
+sync.matrix.reeseric.ci {
+        reverse_proxy 10.10.1.89:8009
+}
+
+funkwhale.reeseric.ci {
+        reverse_proxy http://10.10.1.97:3002
+}
+
+reese.obl.ong {
+        reverse_proxy http://10.10.1.221:8082
+}
+
+aux.dinosaurbbq.org {
+        reverse_proxy http://10.10.1.200
+}
+
+fever.nyctech.obl.ong {
+        reverse_proxy http://10.10.1.225 {
+                header_up Host {upstream_hostport}
+        }
 }
